@@ -78,22 +78,15 @@ public class Pet {
 	@Column(name = "LIKES", length = 50)
 	@OneToMany(targetEntity=Pet.class, mappedBy="likes", fetch=FetchType.LAZY)
 	private List<Pet> likes=new ArrayList<>();
-	
+
 	@Column(name = "DISLIKES", length = 50)
 	@OneToMany(targetEntity=Pet.class, mappedBy="dislikes", fetch=FetchType.LAZY)
 	private List<Pet> dislikes=new ArrayList<>();
-	
+
 	@OneToOne
 	@JoinColumn(name = "OWNER")
 	private User owner;
-	
 
-	/*@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "PET_MATCH", joinColumns = {
-			@JoinColumn(name = "PET_ID", referencedColumnName = "ID") }, inverseJoinColumns = {
-					@JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") })*/
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "couples")
-	private List<Match> matches=new ArrayList<>();
 	
 	public Long getIdPet() {
 		return idPet;
@@ -191,20 +184,13 @@ public class Pet {
 		this.owner = owner;
 	}
 
-	public List<Match> getMatches() {
-		return matches;
-	}
-
-	public void setMatches(List<Match> matches) {
-		this.matches = matches;
-	}
 
 	@Override
 	public String toString() {
 		return "Pet [idPet=" + idPet + ", name=" + name + ", category=" + category + ", sex=" + sex + ", interest="
 				+ interest + ", description=" + description + ", birthMonth=" + birthMonth + ", birthYear=" + birthYear
 				+ ", photos=" + photos + ", likes=" + likes + ", dislikes=" + dislikes + ", owner=" + owner
-				+ ", matches=" + matches + "]";
+				+ "]";
 	}
 	
 	
